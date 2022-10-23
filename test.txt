@@ -1,1 +1,1 @@
-Probando si está clonado el repo.
+Testing if repository is cloned.
