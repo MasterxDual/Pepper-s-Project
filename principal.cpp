@@ -1,42 +1,40 @@
+/* Librerias */
 #include <iostream>
 #include "library.h"
 using namespace std;
 
-int main(int argc, char const *argv[]) {
-    char op=' ';
+/* Funcion principal main */
+int main(int argc, char const *argv[])
+{
+    /* Declaracion e inicializacioon de variables */
+    char op = 0;
 
-    do {
-        op=menu();
-        switch(op) {
+    do // ciclo do-while para menu de opciones
+    {
+        op = menu(); // invocacion funcion menu
+        switch(op)
+        {
             case 'a':
-            case 'A':
                 break;
             case 'b':
-            case 'B':
                 break;
             case 'c':
-            case 'C':
                 break;
             case 'd':
-            case 'D':
                 break;
             case 'e':
-            case 'E':
                 break;
             case 'f':
-            case 'F':
                 break;
             case 'g':
-            case 'G':
                 break;
             case 'h':
-            case 'H':
                 break;
             case 'i':
-            case 'I':
+                printf("\nCerrando...\n");
                 break;
             default:
-                printf("Debe escribir una letra desde la a hasta la i\n");
+                printf("\nCaracter invalido. Intyente nuevamente.\n");
                 break;
         } //Switch
     } while(op!='i'); //Do-while
