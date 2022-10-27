@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
                 printf("\nCerrando...\n");
                 break;
             default:
-                printf("\nCaracter invalido. Intyente nuevamente.\n");
+                printf("\nCaracter invalido. Intente nuevamente.\n");
                 break;
         } //Switch
     } while(op!='i'); //Do-while
