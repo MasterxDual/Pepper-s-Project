@@ -16,9 +16,9 @@ char menu(void)
             "f. Dia mas frio de cada provincia.\n"
             "g. Dia mas calido de cada provincia.\n"
             "h. Mejor provincia para el cultivo de pimientos(temperatura promedio cercana a 23 grados centigrados).\n"
-            "i. Salir.\n"
+            "i. Cerrar menu.\n"
             "Ingrese una opcion: ");
     scanf(" %c", &op);
     op = tolower(op); // convierte cualquier caracter a minusculas
     return op;
-}
+} // menu

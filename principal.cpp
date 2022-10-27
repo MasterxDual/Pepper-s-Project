@@ -6,11 +6,12 @@ using namespace std;
 /* Funcion principal main */
 int main(int argc, char const *argv[])
 {
+    /* Declaracion e inicializacioon de variables */
     char op = 0;
 
-    do
+    do // ciclo do-while para menu de opciones
     {
-        op = menu();
+        op = menu(); // invocacion funcion menu
         switch(op)
         {
             case 'a':
@@ -30,9 +31,10 @@ int main(int argc, char const *argv[])
             case 'h':
                 break;
             case 'i':
+                printf("\nCerrando...\n");
                 break;
             default:
-                printf("Debe escribir una letra desde la a hasta la i\n");
+                printf("\nCaracter invalido. Intyente nuevamente.\n");
                 break;
         } //Switch
     } while(op!='i'); //Do-while
