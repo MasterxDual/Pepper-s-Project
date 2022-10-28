@@ -13,11 +13,16 @@ linea 97 por lo que se recurrio al uso de
 la libreria string.h.Se debe buscar una mejor solucion
 a este problema pero el programa anda igualmente*/
 
-#include<iostream>
+/* Librerias */
+#include <iostream>
 #include <string.h>
 
+/* Directivas */
 #define CHAR_MAX 50
+
 using namespace std;
+
+/* Estructuras */
 struct timestamp 
 {
     int day;
@@ -31,14 +36,17 @@ struct measurement
     float hum;
     struct timestamp time;
 };
-struct city
+/* Estructuras Dinamica */
+struct city // lista
 {
     struct city *next;
     struct measurement m;
     int cityId;
     char cityName[CHAR_MAX];
 };
-struct read
+
+
+struct read // estructura para leer los datos
 {
     int cityId;
     int provCode;
@@ -50,8 +58,10 @@ struct read
     int day;
     int month;
 };
+
 typedef struct city city_t;
 typedef struct read read_t;
+/* Clase */
 class Province
 {
     private:
@@ -59,10 +69,10 @@ class Province
     city_t *temp;
     city_t *newNode;
     public:
-    Province();
+    Province(); // constructor
     void apped(read_t *);
     void printList(void);
-    ~Province();
+    ~Province(); // destructor
 };
 Province::Province()
 {
@@ -74,10 +84,10 @@ Province::~Province()
 {
 	while(head != NULL)
 	{
-		temp=head;
-	head = temp->next;
+		temp = head;
+	    head = temp->next;
 		free(temp);
-	printf("\n Nodo liberado");
+	    printf("\n Nodo liberado");
 	}
 }
 void Province::apped(read_t *read)

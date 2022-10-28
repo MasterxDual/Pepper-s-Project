@@ -36,8 +36,7 @@ int main(int argc, char const *argv[])
             default:
                 printf("\nCaracter invalido. Intente nuevamente.\n");
                 break;
-        } //Switch
-    } while(op!='i'); //Do-while
-
+        } // switch
+    } while(op!='i'); // do-while
     return 0;
-} //Main
+} // main
