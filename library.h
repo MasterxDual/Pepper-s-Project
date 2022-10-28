@@ -1,7 +1,7 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
-char menu(void);
+void menu(char *);
 
 #include "functions_library.cpp"
 
