@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 
     do // ciclo do-while para menu de opciones
     {
-        op = menu(); // invocacion funcion menu
+        menu(&op); // invocacion funcion menu
         switch(op)
         {
             case 'a':
