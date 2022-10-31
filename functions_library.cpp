@@ -1,6 +1,81 @@
 #include "library.h"
 #include <iostream>
-
+#include <string.h>
+Province::Province()
+{
+    head = NULL;
+    temp = NULL;
+    newNode = NULL;
+}//Province::constructor
+Province::~Province()
+{
+	while(head != NULL)
+	{
+		temp=head;
+	    head = temp->next;
+		free(temp);
+        //printf("\nFree node");
+	}//while
+}//Province::destructor
+void Province::apped(read_t *read)
+{
+    newNode =(city_t *)malloc(sizeof(city_t));
+    if(newNode == NULL)
+    {
+        printf("\nNot memory");
+        exit(1);
+    }//if
+    //Set new node data
+    newNode->cityId = read->cityId;
+    newNode->m.hum = read->hum;
+    newNode->m.temp = read->temp;
+    newNode->m.time.mm= read->mm;
+    newNode->m.time.hh= read->hh;
+    newNode->m.time.day= read->day;
+    newNode->m.time.month= read->month;
+    strncpy(newNode->cityName,read->cityName,CHAR_MAX);
+    newNode->next=NULL;
+    if(head == NULL)
+    {
+        head=newNode;
+    }//if
+    else
+    {
+        temp=head;
+        while (temp->next != NULL)
+        {
+            temp=temp->next;
+        }//while
+        temp->next = newNode;
+        
+    }//else
+}//Province::apped
+void Province::printList()
+{
+ 
+    temp = head;
+    while (temp != NULL)
+    {
+        printf("\nCity Name: %s"
+        "cityId: %d"
+        "\nTemp: %.2f"
+        "\nHum: %.2f"
+        "\nday: %d"
+        "\nmonth: %d"
+        "\nhh: %d"
+        "\nmm: %d",
+        temp->cityName,
+        temp->cityId,
+        temp->m.temp,
+        temp->m.hum,
+        temp->m.time.day,
+        temp->m.time.month,
+        temp->m.time.hh,
+        temp->m.time.mm);
+        temp=temp->next;
+    }//while
+    
+}//Province::printList
 char menu(void)
 {
     /* Declaracion e inicializacioon de variables */
