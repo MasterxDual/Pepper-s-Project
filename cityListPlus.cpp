@@ -32,7 +32,7 @@ struct city // lista
 typedef struct city city_t;
 
 /* Clase */
-class Provincie
+class Province
 {
 private:
     int cityCode;
@@ -44,24 +44,34 @@ private:
     int mm;
     int day;
     int month;
+
+    city_t *head;
+
 public:
-    Provincie();
-    void loadData(city_t **head);
+    Province();
+    void readData(void);
+    void loadData(void);
     void printData(void);
-    ~Provincie();
+    ~Province();
 };
 
-void Provincie::loadData(city_t **head)
+void Province::readData(void)
+{
+    /* completar con 'dataSetReadPlus.cpp' */
+} // readData
+
+void Province::loadData(void)
 {
     city_t *temporary = NULL; // var. temporal
     /* Creacion de Memoria para nuevo nodo */
-    city_t *newNode =(city_t *)malloc(sizeof(city_t));
+    city_t *newNode = (city_t *)malloc(sizeof(city_t));
+    /* Verifica si hay memoria disponible */
     if(newNode == NULL)
     {
         printf("\nNo hay memoria!\n");
         exit(1); // finaliza el programa
     }
-    //Añado informacion de lectura al nodo
+    /* Añado informacion de lectura al nodo */
     newNode->cityId = cityCode;
     newNode->m.hum = hum;
     newNode->m.temp = temp;
@@ -69,16 +79,14 @@ void Provincie::loadData(city_t **head)
     newNode->m.time.hh= hh;
     newNode->m.time.day= day;
     newNode->m.time.month= month;
-    strncpy(newNode->cityName, cityName, TAM_STRINGS);
+    strcpy(newNode->cityName, cityName);
     newNode->next=NULL;
-    //agregando
-    if(*head == NULL)
+    /* Si la lista esta vacia, el nuevo nodo es el primero */
+    if(head == NULL)
+        head = newNode;
+    else // sino, sera el ultimo
     {
-        *head = newNode;
-    }
-    else
-    {
-        temporary = *head;
+        temporary = head;
         while (temporary->next != NULL)
             temporary = temporary->next;
         temporary->next = newNode;
@@ -86,14 +94,21 @@ void Provincie::loadData(city_t **head)
 }
 
 /* Constructor y Destructor */
-Provincie::Provincie() {}
-Provincie::~Provincie() {}
+Province::Province()
+{
+    head = NULL;
+}
+Province::~Province() {}
 
 int main(int argc, char const *argv[])
 {
-    const int tam_array = 1;
-    city_t *head = NULL;
-    Provincie arch[3];
-    arch[0].loadData(&head);
+    /* Declaracion e inicializacion de variables */
+    city_t *head = NULL; // cabeza de la lista
+    Province arch[3]; // arreglo de objetos, un elemento por provincia
+
+    /* Menu de opciones */
+
+    /* Aqui iria un bucle for */
+    arch[0].loadData();
     return 0;
 }

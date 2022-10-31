@@ -23,7 +23,7 @@ private:
 public:
     Data();
     void readData(void);
-    //void printData(void);
+    void printData(void);
     ~Data();
 };
 
@@ -37,30 +37,6 @@ void Data::readData(void)
     FILE *file;
     file= fopen(ROUTE,"r");
     int num = 1; // codigo de provincia 1 = Cordoba
-
-/*     while(!feof(file))
-    {
-        fscanf(file,"%d %d %s %f %f %d %d %d %d",
-                &cityCode,
-                &provCode,
-                cityName,
-                &temp,
-                &hum,
-                &hs,
-                &min,
-                &dd,
-                &mm);
-        printf("\n%d %d %s %.2f %.2f %d %d %d %d",
-                cityCode,
-                provCode,
-                cityName,
-                temp,
-                hum,
-                hs,
-                min,
-                dd,
-                mm);
-    } */
 
     while (!feof(file))
     {
@@ -76,22 +52,27 @@ void Data::readData(void)
                 &mm);
         if (num == provCode) // solo imprime aquellos valores con el codigo de provincia = 1
         {
-            printf("\n%d %d %s %.2f %.2f %d %d %d %d",
-                    cityCode,
-                    provCode,
-                    cityName,
-                    temp,
-                    hum,
-                    hs,
-                    min,
-                    dd,
-                    mm);
+            printData();
         }
     }
 
     fclose(file);
     printf("\nLectura exitosa!\n");
 } // readData
+void Data::printData(void)
+{
+    printf("\n%d %d %s %.2f %.2f %d %d %d %d",
+        cityCode,
+        provCode,
+        cityName,
+        temp,
+        hum,
+        hs,
+        min,
+        dd,
+        mm);
+} // printData
+
 
 /* Constructor y Destructor */
 Data::Data() {}
