@@ -4,6 +4,7 @@
 
 /* Directivas */
 #define TAM_STRINGS 50
+#define ROUTE "./data_set.txt"
 
 using namespace std;
 
@@ -49,15 +50,39 @@ private:
 
 public:
     Province();
-    void readData(void);
+    void readData(int ii);
     void loadData(void);
     void printData(void);
     ~Province();
 };
 
-void Province::readData(void)
+void Province::readData(int ii)
 {
-    /* completar con 'dataSetReadPlus.cpp' */
+    FILE *file;
+    file= fopen(ROUTE,"r");
+    if (file == NULL)
+    {
+        printf("\nImposible abrir el archivo!\n");
+        exit(1);
+    }
+    while (!feof(file))
+    {
+        fscanf(file,"%d %d %s %f %f %d %d %d %d",
+                &cityCode,
+                &provCode,
+                cityName,
+                &temp,
+                &hum,
+                &hh,
+                &mm,
+                &day,
+                &month);
+        if (provCode == (ii+1))
+        {
+            printData();
+        }
+    }
+    printf("\nTodo unn exito pa\n");
 } // readData
 
 void Province::loadData(void)
@@ -91,7 +116,21 @@ void Province::loadData(void)
             temporary = temporary->next;
         temporary->next = newNode;
     }
-}
+} // loadData
+
+void Province::printData(void)
+{
+    printf("\n%d %d %s %.2f %.2f %d %d %d %d",
+        cityCode,
+        provCode,
+        cityName,
+        temp,
+        hum,
+        hh,
+        mm,
+        day,
+        month);
+} // printData
 
 /* Constructor y Destructor */
 Province::Province()
@@ -103,12 +142,16 @@ Province::~Province() {}
 int main(int argc, char const *argv[])
 {
     /* Declaracion e inicializacion de variables */
-    city_t *head = NULL; // cabeza de la lista
+    const int count = 1; // cantidad de provincias '3'
     Province arch[3]; // arreglo de objetos, un elemento por provincia
+
+    for (int ii = 0; ii < count; ii++)
+    {
+        arch[ii].readData(ii);
+        // arch[ii].loadData();
+    }
 
     /* Menu de opciones */
 
-    /* Aqui iria un bucle for */
-    arch[0].loadData();
     return 0;
 }
