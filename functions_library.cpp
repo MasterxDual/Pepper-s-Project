@@ -57,7 +57,7 @@ void Province::printList()
     while (temp != NULL)
     {
         printf("\nCity Name: %s"
-        "cityId: %d"
+        "\ncityId: %d"
         "\nTemp: %.2f"
         "\nHum: %.2f"
         "\nday: %d"
@@ -76,6 +76,48 @@ void Province::printList()
     }//while
     
 }//Province::printList
+
+DataSetRead::DataSetRead()
+{
+    file = fopen(ROUTE,"r");
+    if(file == NULL)
+    {
+        printf("\nFILE ERROR");
+        exit(1);
+    }
+}//DataSetRead::constructor
+DataSetRead::~DataSetRead()
+{
+    fclose(file);
+}//DataSetRead::destructor
+void DataSetRead::RegainDataSetLine()
+{
+    fscanf(file,"%d %d %s %f %f %d %d %d %d",
+            &DataSetLine.cityId,
+            &DataSetLine.provCode,
+            DataSetLine.cityName,
+            &DataSetLine.temp,
+            &DataSetLine.hum,
+            &DataSetLine.hh,
+            &DataSetLine.mm,
+            &DataSetLine.day,
+            &DataSetLine.month);
+}
+read_t DataSetRead::GetDataSetLine()
+{
+    return DataSetLine;
+}
+int DataSetRead::DataSetEnd()
+{
+    if(feof(file))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
 char menu(void)
 {
     /* Declaracion e inicializacioon de variables */
