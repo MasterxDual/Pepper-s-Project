@@ -77,6 +77,31 @@ void Province::printList()
     
 }//Province::printList
 
+
+void Province::countProvinces(int provinceCode)
+{
+    int count=0;
+
+    temp=head;
+    while(temp!=NULL)
+    {
+        count++;
+        temp=temp->next;
+    } //While
+    if(provinceCode==1)
+    {
+        printf("\nLa provincia de Cordoba tiene %d muestras almacenadas\n", count);
+    } 
+    if(provinceCode==2)
+    {
+        printf("\nLa provincia de Santa Fe tiene %d muestras almacenadas\n", count);
+    }
+    if(provinceCode==3)
+    {
+        printf("\nLa provincia de Mendoza tiene %d muestras almacenadas\n", (count-1));
+    }
+} //Province::countProvinces
+
 DataSetRead::DataSetRead()
 {
     file = fopen(ROUTE,"r");
@@ -118,6 +143,7 @@ int DataSetRead::DataSetEnd()
         return 1;
     }
 }
+
 char menu(void)
 {
     /* Declaracion e inicializacioon de variables */
