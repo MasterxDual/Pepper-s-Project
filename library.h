@@ -1,6 +1,7 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 #define CHAR_MAX 50
+#define ROUTE "./data_set.txt"
 char menu(void);
 struct timestamp 
 {
@@ -50,6 +51,18 @@ class Province
     void printList(void);
     ~Province();
 };//province class
+class DataSetRead
+{
+    private:
+    read_t DataSetLine;
+    FILE *file;
+    public:
+    DataSetRead();
+    void RegainDataSetLine();
+    read_t GetDataSetLine();
+    int DataSetEnd();
+    ~DataSetRead(); 
+};//class DataSetRead
 #include "functions_library.cpp"
 
 #endif
