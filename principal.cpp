@@ -9,11 +9,12 @@ int main(int argc, char const *argv[])
     /* Declaracion e inicializacion de variables */
     char op = 0;
     int provinceCode=0;
-    /*Instanciacion de objetos*/
     read_t read;
+    /* Instanciacion de objetos */
     DataSetRead dataset;
     Province Cordoba, SantaFe, Mendoza;
 
+    /* Lectura del archivo y carga de Listas */
     while(dataset.DataSetEnd())
     {
         dataset.RegainDataSetLine();
@@ -30,58 +31,25 @@ int main(int argc, char const *argv[])
             Mendoza.append(&read);
             break;
         default:
-            printf("\nCodigo de provincia invalido");
+            printf("\nCodigo de provincia invalido\n");
             break;
         }
     }
     
     do // ciclo do-while para menu de opciones
     {
-        op = menu(); // invocacion funcion menu
+        menu(&op); // invocacion funcion menu
         switch(op)
         {
             case 'a':
-                printf("Ingrese un numero entero para imprimir las muestras segun la provincia:\n"
-                "1. Cordoba\n"
-                "2. Santa Fe\n"
-                "3. Mendoza\n");
-                scanf("%d", &provinceCode);
-                switch(provinceCode)
-                {
-                    case 1:
-                        Cordoba.countProvinces(provinceCode);
-                        break;
-                    case 2:
-                        SantaFe.countProvinces(provinceCode);
-                        break;
-                    case 3:
-                        Mendoza.countProvinces(provinceCode);
-                        break;
-                    default:   
-                        printf("Numero incorrecto, vuelva a ingresar\n");
-                        break;
-                }
+                printf("Cordoba: %d muestras.\n", Cordoba.countProvinces());
+                printf("Santa Fe: %d muestras.\n", SantaFe.countProvinces());
+                printf("Mendoza: %d muestras.\n", Mendoza.countProvinces());
+                break;
             case 'b':
-                printf("Ingrese un numero entero para saber la temperatura promedio segun la provincia:\n"
-                "1. Cordoba\n"
-                "2. Santa Fe\n"
-                "3. Mendoza\n");
-                scanf("%d", &provinceCode);
-                switch(provinceCode)
-                {
-                    case 1:
-                        Cordoba.averageTempProv(provinceCode);
-                        break;
-                    case 2:
-                        SantaFe.averageTempProv(provinceCode);
-                        break;
-                    case 3:
-                        Mendoza.averageTempProv(provinceCode);
-                        break;
-                    default:
-                        printf("Numero incorrecto, vuelva a ingresar\n");
-                        break;
-                }
+                printf("Temperatura promedio de Cordoba: %.2f\n", Cordoba.averageTempProv());
+                printf("Temperatura promedio de Santa Fe: %.2f\n", SantaFe.averageTempProv());
+                printf("Temperatura promedio de Mendoza: %.2f\n", Mendoza.averageTempProv());
                 break;
             case 'c':
                 break;
@@ -101,8 +69,8 @@ int main(int argc, char const *argv[])
             default:
                 printf("\nCaracter invalido. Intente nuevamente.\n");
                 break;
-        } //Switch
-    } while(op!='i'); //Do-while
+        } // switch
+    } while(op!='i'); // do-while
 
     return 0;
-} //Main
+} // main
