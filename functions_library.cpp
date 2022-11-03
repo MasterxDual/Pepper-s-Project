@@ -1,12 +1,14 @@
 #include "library.h"
 #include <iostream>
 #include <string.h>
+
 Province::Province()
 {
     head = NULL;
     temp = NULL;
     newNode = NULL;
 }//Province::constructor
+
 Province::~Province()
 {
 	while(head != NULL)
@@ -17,7 +19,8 @@ Province::~Province()
         //printf("\nFree node");
 	}//while
 }//Province::destructor
-void Province::apped(read_t *read)
+
+void Province::append(read_t *read)
 {
     newNode =(city_t *)malloc(sizeof(city_t));
     if(newNode == NULL)
@@ -49,7 +52,8 @@ void Province::apped(read_t *read)
         temp->next = newNode;
         
     }//else
-}//Province::apped
+}//Province::append
+
 void Province::printList()
 {
  
@@ -77,7 +81,6 @@ void Province::printList()
     
 }//Province::printList
 
-
 void Province::countProvinces(int provinceCode)
 {
     int count=0;
@@ -88,19 +91,51 @@ void Province::countProvinces(int provinceCode)
         count++;
         temp=temp->next;
     } //While
+
     if(provinceCode==1)
     {
         printf("\nLa provincia de Cordoba tiene %d muestras almacenadas\n", count);
-    } 
+    } //If
+
     if(provinceCode==2)
     {
         printf("\nLa provincia de Santa Fe tiene %d muestras almacenadas\n", count);
-    }
+    } //If
+
     if(provinceCode==3)
     {
         printf("\nLa provincia de Mendoza tiene %d muestras almacenadas\n", (count-1));
-    }
+    } //If
 } //Province::countProvinces
+
+void Province::averageTempProv(int provinceCode)
+{
+    int count=0, sum=0;
+
+    temp=head;
+    while(temp!=NULL)
+    {
+        sum+=temp->m.temp;
+        count++;
+        temp=temp->next;
+    } //While
+
+    if(provinceCode==1)
+    {
+        printf("\nLa provincia de Cordoba tiene una temperatura promedio de %.2f\n", ((float)(sum/count)));
+    } //If
+
+    if(provinceCode==2)
+    {
+        printf("\nLa provincia de Santa Fe tiene una temperatura promedio de %.2f\n", ((float)(sum/count)));
+    } //If
+
+    if(provinceCode==3)
+    {
+        printf("\nLa provincia de Mendoza tiene una temperatura promedio de %.2f\n", ((float)(sum/(count-1))));
+    } //If
+} //Province::averageTempProv
+
 
 DataSetRead::DataSetRead()
 {
@@ -111,10 +146,12 @@ DataSetRead::DataSetRead()
         exit(1);
     }
 }//DataSetRead::constructor
+
 DataSetRead::~DataSetRead()
 {
     fclose(file);
 }//DataSetRead::destructor
+
 void DataSetRead::RegainDataSetLine()
 {
     fscanf(file,"%d %d %s %f %f %d %d %d %d",
@@ -128,10 +165,12 @@ void DataSetRead::RegainDataSetLine()
             &DataSetLine.day,
             &DataSetLine.month);
 }
+
 read_t DataSetRead::GetDataSetLine()
 {
     return DataSetLine;
 }
+
 int DataSetRead::DataSetEnd()
 {
     if(feof(file))
@@ -157,7 +196,7 @@ char menu(void)
             "d. Ciudad mas calida de cada provincia.\n"
             "e. Ciudad mas fria de cada provincia.\n"
             "f. Dia mas frio de cada provincia.\n"
-            "g. Dia mas calido de cada provincia.\n"
+            "g. Dia mas calido de cada ciudad.\n"
             "h. Mejor provincia para el cultivo de pimientos(temperatura promedio cercana a 23 grados centigrados).\n"
             "i. Cerrar menu.\n"
             "Ingrese una opcion: ");

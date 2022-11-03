@@ -6,13 +6,13 @@ using namespace std;
 /* Funcion principal main */
 int main(int argc, char const *argv[])
 {
-    /* Declaracion e inicializacioon de variables */
+    /* Declaracion e inicializacion de variables */
     char op = 0;
     int provinceCode=0;
-    /*Instanciacion de objetos de la clase Province*/
+    /*Instanciacion de objetos*/
     read_t read;
     DataSetRead dataset;
-    Province Cordoba,SantaFe,Mendoza;
+    Province Cordoba, SantaFe, Mendoza;
 
     while(dataset.DataSetEnd())
     {
@@ -21,13 +21,13 @@ int main(int argc, char const *argv[])
         switch (read.provCode)
         {
         case 1:
-            Cordoba.apped(&read);
+            Cordoba.append(&read);
             break;
         case 2:
-            SantaFe.apped(&read);
+            SantaFe.append(&read);
             break;
         case 3:
-            Mendoza.apped(&read);
+            Mendoza.append(&read);
             break;
         default:
             printf("\nCodigo de provincia invalido");
@@ -59,9 +59,29 @@ int main(int argc, char const *argv[])
                         break;
                     default:   
                         printf("Numero incorrecto, vuelva a ingresar\n");
+                        break;
                 }
-                break;
             case 'b':
+                printf("Ingrese un numero entero para saber la temperatura promedio segun la provincia:\n"
+                "1. Cordoba\n"
+                "2. Santa Fe\n"
+                "3. Mendoza\n");
+                scanf("%d", &provinceCode);
+                switch(provinceCode)
+                {
+                    case 1:
+                        Cordoba.averageTempProv(provinceCode);
+                        break;
+                    case 2:
+                        SantaFe.averageTempProv(provinceCode);
+                        break;
+                    case 3:
+                        Mendoza.averageTempProv(provinceCode);
+                        break;
+                    default:
+                        printf("Numero incorrecto, vuelva a ingresar\n");
+                        break;
+                }
                 break;
             case 'c':
                 break;

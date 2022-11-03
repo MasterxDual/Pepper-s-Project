@@ -2,7 +2,9 @@
 #define LIBRARY_H
 #define CHAR_MAX 50
 #define ROUTE "./data_set.txt"
+
 char menu(void);
+
 struct timestamp 
 {
     int day;
@@ -10,12 +12,14 @@ struct timestamp
     int hh;
     int mm;
 };//timestamp
+
 struct measurement 
 {
     float temp;
     float hum;
     struct timestamp time;
 };//measurement
+
 struct city
 {
     struct city *next;
@@ -23,6 +27,7 @@ struct city
     int cityId;
     char cityName[CHAR_MAX];
 };//city
+
 struct read
 {
     int cityId;
@@ -47,11 +52,13 @@ class Province
     city_t *newNode;
     public:
     Province();
-    void apped(read_t *);
+    void append(read_t *);
     void printList(void);
     void countProvinces(int);
+    void averageTempProv(int);
     ~Province();
 };//province class
+
 class DataSetRead
 {
     private:
@@ -64,6 +71,7 @@ class DataSetRead
     int DataSetEnd();
     ~DataSetRead(); 
 };//class DataSetRead
+
 #include "functions_library.cpp"
 
 #endif
