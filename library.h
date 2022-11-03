@@ -49,6 +49,7 @@ class Province
     Province();
     void apped(read_t *);
     void printList(void);
+    void countProvinces(int);
     ~Province();
 };//province class
 class DataSetRead
