@@ -3,7 +3,7 @@
 #define CHAR_MAX 50
 #define ROUTE "./data_set.txt"
 
-char menu(void);
+void menu(char *);
 
 struct timestamp 
 {
@@ -54,8 +54,8 @@ class Province
     Province();
     void append(read_t *);
     void printList(void);
-    void countProvinces(int);
-    void averageTempProv(int);
+    int countProvinces(void);
+    float averageTempProv(void);
     ~Province();
 };//province class
 

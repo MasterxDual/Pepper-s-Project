@@ -7,7 +7,7 @@ Province::Province()
     head = NULL;
     temp = NULL;
     newNode = NULL;
-}//Province::constructor
+} // constructor clase Province
 
 Province::~Province()
 {
@@ -16,9 +16,8 @@ Province::~Province()
 		temp=head;
 	    head = temp->next;
 		free(temp);
-        //printf("\nFree node");
-	} //While
-}//Province::destructor
+	} // hhile
+} // destructor clase Province
 
 void Province::append(read_t *read)
 {
@@ -27,8 +26,8 @@ void Province::append(read_t *read)
     {
         printf("\nNot memory");
         exit(1);
-    } //If
-    //Set new node data
+    } // if
+    // Set new node data
     newNode->cityId = read->cityId;
     newNode->m.hum = read->hum;
     newNode->m.temp = read->temp;
@@ -41,17 +40,17 @@ void Province::append(read_t *read)
     if(head == NULL)
     {
         head=newNode;
-    } //If
+    } // if
     else
     {
         temp=head;
         while (temp->next != NULL)
         {
             temp=temp->next;
-        }//while
+        } // while
         temp->next = newNode;
         
-    } //Else
+    } // else
 }//Province::append
 
 void Province::printList()
@@ -81,36 +80,22 @@ void Province::printList()
     
 }//Province::printList
 
-void Province::countProvinces(int provinceCode)
+int Province::countProvinces(void)
 {
-    int count=0;
-
+    int count=0; // contador
     temp=head;
     while(temp!=NULL)
     {
         count++;
         temp=temp->next;
-    } //While
-
-    if(provinceCode==1)
-    {
-        printf("\nLa provincia de Cordoba tiene %d muestras almacenadas\n", count);
-    } //If
-
-    if(provinceCode==2)
-    {
-        printf("\nLa provincia de Santa Fe tiene %d muestras almacenadas\n", count);
-    } //If
-
-    if(provinceCode==3)
-    {
-        printf("\nLa provincia de Mendoza tiene %d muestras almacenadas\n", (count-1));
-    } //If
+    } // while
+    return count;
 } //Province::countProvinces
 
-void Province::averageTempProv(int provinceCode)
+float Province::averageTempProv(void)
 {
-    int count=0, sum=0;
+    int count=0;
+    float sum=0;
 
     temp=head;
     while(temp!=NULL)
@@ -119,21 +104,7 @@ void Province::averageTempProv(int provinceCode)
         count++;
         temp=temp->next;
     } //While
-
-    if(provinceCode==1)
-    {
-        printf("\nLa provincia de Cordoba tiene una temperatura promedio de %.2f\n", ((float)(sum/count)));
-    } //If
-
-    if(provinceCode==2)
-    {
-        printf("\nLa provincia de Santa Fe tiene una temperatura promedio de %.2f\n", ((float)(sum/count)));
-    } //If
-
-    if(provinceCode==3)
-    {
-        printf("\nLa provincia de Mendoza tiene una temperatura promedio de %.2f\n", ((float)(sum/(count-1))));
-    } //If
+    return ((float)sum/count);
 } //Province::averageTempProv
 
 
@@ -183,11 +154,8 @@ int DataSetRead::DataSetEnd()
     }
 }
 
-char menu(void)
+void menu(char *op)
 {
-    /* Declaracion e inicializacioon de variables */
-    char op = 0;
-
     /* Menu de opciones */
     printf("Ingrese una letra segun lo que quiera mostrar:\n"
             "a. Total de las muestras almacenadas en las listas pertenecientes a cada provincia.\n"
@@ -200,7 +168,6 @@ char menu(void)
             "h. Mejor provincia para el cultivo de pimientos(temperatura promedio cercana a 23 grados centigrados).\n"
             "i. Cerrar menu.\n"
             "Ingrese una opcion: ");
-    scanf(" %c", &op);
-    op = tolower(op); // convierte cualquier caracter a minusculas
-    return op;
+    scanf(" %c", op);
+    *op = tolower(*op); // convierte cualquier caracter a minusculas
 } // menu
