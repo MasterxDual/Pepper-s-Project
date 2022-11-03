@@ -17,7 +17,7 @@ Province::~Province()
 	    head = temp->next;
 		free(temp);
         //printf("\nFree node");
-	}//while
+	} //While
 }//Province::destructor
 
 void Province::append(read_t *read)
@@ -27,7 +27,7 @@ void Province::append(read_t *read)
     {
         printf("\nNot memory");
         exit(1);
-    }//if
+    } //If
     //Set new node data
     newNode->cityId = read->cityId;
     newNode->m.hum = read->hum;
@@ -41,7 +41,7 @@ void Province::append(read_t *read)
     if(head == NULL)
     {
         head=newNode;
-    }//if
+    } //If
     else
     {
         temp=head;
@@ -51,7 +51,7 @@ void Province::append(read_t *read)
         }//while
         temp->next = newNode;
         
-    }//else
+    } //Else
 }//Province::append
 
 void Province::printList()
@@ -77,7 +77,7 @@ void Province::printList()
         temp->m.time.hh,
         temp->m.time.mm);
         temp=temp->next;
-    }//while
+    }// While
     
 }//Province::printList
 
