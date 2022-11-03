@@ -51,7 +51,7 @@ void Province::append(read_t *read)
         temp->next = newNode;
         
     } // else
-}//Province::append
+}// Province::append
 
 void Province::printList()
 {
@@ -78,7 +78,7 @@ void Province::printList()
         temp=temp->next;
     }// While
     
-}//Province::printList
+}// Province::printList
 
 int Province::countProvinces(void)
 {
@@ -90,7 +90,7 @@ int Province::countProvinces(void)
         temp=temp->next;
     } // while
     return count;
-} //Province::countProvinces
+} // Province::countProvinces
 
 float Province::averageTempProv(void)
 {
@@ -103,10 +103,28 @@ float Province::averageTempProv(void)
         sum+=temp->m.temp;
         count++;
         temp=temp->next;
-    } //While
+    } // while
     return ((float)sum/count);
-} //Province::averageTempProv
+} // Province::averageTempProv
 
+int Province::coldestDayProv(void)
+{
+    float lowestTemp=0;
+    int coldestDay=0;
+
+    temp=head;
+    lowestTemp=40;
+    while(temp!=NULL)
+    {
+        if(lowestTemp>temp->m.temp)
+        {
+            lowestTemp=temp->m.temp;
+            coldestDay=temp->m.time.day;
+        } // if
+        temp=temp->next;
+    } // while
+    return coldestDay;
+} // Province::lowerTemperature
 
 DataSetRead::DataSetRead()
 {
@@ -116,12 +134,12 @@ DataSetRead::DataSetRead()
         printf("\nFILE ERROR");
         exit(1);
     }
-}//DataSetRead::constructor
+}// constructor clase DataSetRead
 
 DataSetRead::~DataSetRead()
 {
     fclose(file);
-}//DataSetRead::destructor
+}// destructor clase DataSetRead
 
 void DataSetRead::RegainDataSetLine()
 {
@@ -135,29 +153,29 @@ void DataSetRead::RegainDataSetLine()
             &DataSetLine.mm,
             &DataSetLine.day,
             &DataSetLine.month);
-}
+} // DataSetRead::RegainDataSetLine
 
 read_t DataSetRead::GetDataSetLine()
 {
     return DataSetLine;
-}
+} // DataSetRead::GetDataSetLine
 
 int DataSetRead::DataSetEnd()
 {
     if(feof(file))
     {
         return 0;
-    }
+    } // if
     else
     {
         return 1;
-    }
-}
+    } // else
+} // DataSetRead::DataSetEnd
 
 void menu(char *op)
 {
     /* Menu de opciones */
-    printf("Ingrese una letra segun lo que quiera mostrar:\n"
+    printf("\n\nIngrese una letra segun lo que quiera mostrar:\n"
             "a. Total de las muestras almacenadas en las listas pertenecientes a cada provincia.\n"
             "b. Temperatura promedio de cada provincia.\n"
             "c. Temperatura promedio de cada ciudad.\n"

@@ -56,6 +56,7 @@ class Province
     void printList(void);
     int countProvinces(void);
     float averageTempProv(void);
+    int coldestDayProv(void);
     ~Province();
 };//province class
 
