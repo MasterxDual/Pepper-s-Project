@@ -42,11 +42,13 @@ int main(int argc, char const *argv[])
         switch(op)
         {
             case 'a':
+                printf("\nTotal de las muestras almacenadas en cada provincia:\n");
                 printf("Cordoba: %d muestras.\n", Cordoba.countProvinces());
                 printf("Santa Fe: %d muestras.\n", SantaFe.countProvinces());
                 printf("Mendoza: %d muestras.\n", Mendoza.countProvinces());
                 break;
             case 'b':
+                printf("\nTemperaturas promedio de cada provincia:\n");
                 printf("Temperatura promedio de Cordoba: %.2f\n", Cordoba.averageTempProv());
                 printf("Temperatura promedio de Santa Fe: %.2f\n", SantaFe.averageTempProv());
                 printf("Temperatura promedio de Mendoza: %.2f\n", Mendoza.averageTempProv());
@@ -58,6 +60,10 @@ int main(int argc, char const *argv[])
             case 'e':
                 break;
             case 'f':
+                printf("\nDias mas frios de cada provincia:\n");
+                printf("Dia mas frio de Cordoba: %d\n", Cordoba.coldestDayProv());
+                printf("Dia mas frio de Santa Fe: %d\n", SantaFe.coldestDayProv());
+                printf("Dia mas frio de Mendoza: %d\n", Mendoza.coldestDayProv());
                 break;
             case 'g':
                 break;
