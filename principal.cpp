@@ -61,9 +61,12 @@ int main(int argc, char const *argv[])
                 break;
             case 'f':
                 printf("\nDias mas frios de cada provincia:\n");
-                printf("Dia mas frio de Cordoba: %d\n", Cordoba.coldestDayProv());
-                printf("Dia mas frio de Santa Fe: %d\n", SantaFe.coldestDayProv());
-                printf("Dia mas frio de Mendoza: %d\n", Mendoza.coldestDayProv());
+                printf("Dia mas frio de Cordoba: ");
+                Cordoba.coldestDayProv();
+                printf("Dia mas frio de Santa Fe: ");
+                SantaFe.coldestDayProv();
+                printf("Dia mas frio de Mendoza: ");
+                Mendoza.coldestDayProv();
                 break;
             case 'g':
                 break;

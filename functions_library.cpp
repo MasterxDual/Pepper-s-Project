@@ -107,23 +107,25 @@ float Province::averageTempProv(void)
     return ((float)sum/count);
 } // Province::averageTempProv
 
-int Province::coldestDayProv(void)
+void Province::coldestDayProv(void)
 {
     float lowestTemp=0;
-    int coldestDay=0;
-
+    int coldestDay=0, coldestMonth=0;
+    int firstFlag=0;
     temp=head;
-    lowestTemp=40;
+    lowestTemp=0;
     while(temp!=NULL)
     {
-        if(lowestTemp>temp->m.temp)
+        if(lowestTemp>temp->m.temp || firstFlag == 0)
         {
+            firstFlag=1;
             lowestTemp=temp->m.temp;
             coldestDay=temp->m.time.day;
+            coldestMonth= temp->m.time.month;
         } // if
         temp=temp->next;
     } // while
-    return coldestDay;
+    printf("%d / %d\n", coldestDay,coldestMonth);
 } // Province::lowerTemperature
 
 DataSetRead::DataSetRead()
