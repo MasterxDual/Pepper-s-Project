@@ -4,6 +4,7 @@
 #define ROUTE "./data_set.txt"
 
 void menu(char *);
+void bestProvince(float, float, float);
 
 struct timestamp 
 {

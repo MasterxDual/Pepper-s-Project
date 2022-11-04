@@ -9,6 +9,7 @@ int main(int argc, char const *argv[])
     /* Declaracion e inicializacion de variables */
     char op = 0;
     int provinceCode=0;
+    float avTempCor=0, avTempStaFe=0, avTempMza=0;
     read_t read;
     /* Instanciacion de objetos */
     DataSetRead dataset;
@@ -35,6 +36,11 @@ int main(int argc, char const *argv[])
             break;
         }
     }
+
+    /* Definiendo variables de temperaturas promedio */
+    avTempCor=Cordoba.averageTempProv();
+    avTempStaFe=SantaFe.averageTempProv();
+    avTempMza=Mendoza.averageTempProv();
     
     do // ciclo do-while para menu de opciones
     {
@@ -49,9 +55,9 @@ int main(int argc, char const *argv[])
                 break;
             case 'b':
                 printf("\nTemperaturas promedio de cada provincia:\n");
-                printf("Temperatura promedio de Cordoba: %.2f\n", Cordoba.averageTempProv());
-                printf("Temperatura promedio de Santa Fe: %.2f\n", SantaFe.averageTempProv());
-                printf("Temperatura promedio de Mendoza: %.2f\n", Mendoza.averageTempProv());
+                printf("Temperatura promedio de Cordoba: %.2f\n", avTempCor);
+                printf("Temperatura promedio de Santa Fe: %.2f\n", avTempStaFe);
+                printf("Temperatura promedio de Mendoza: %.2f\n", avTempMza);
                 break;
             case 'c':
                 break;
@@ -61,16 +67,17 @@ int main(int argc, char const *argv[])
                 break;
             case 'f':
                 printf("\nDias mas frios de cada provincia:\n");
-                printf("Dia mas frio de Cordoba: ");
+                printf("Dia y mes mas frio de Cordoba: ");
                 Cordoba.coldestDayProv();
-                printf("Dia mas frio de Santa Fe: ");
+                printf("Dia y mes mas frio de Santa Fe: ");
                 SantaFe.coldestDayProv();
-                printf("Dia mas frio de Mendoza: ");
+                printf("Dia y mes mas frio de Mendoza: ");
                 Mendoza.coldestDayProv();
                 break;
             case 'g':
                 break;
             case 'h':
+                bestProvince(avTempCor, avTempStaFe, avTempMza);
                 break;
             case 'i':
                 printf("\nCerrando...\n");
