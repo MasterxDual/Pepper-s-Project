@@ -112,21 +112,21 @@ void Province::coldestDayProv(void)
     float lowestTemp=0;
     int coldestDay=0, coldestMonth=0;
     int firstFlag=0;
+
     temp=head;
-    lowestTemp=0;
     while(temp!=NULL)
     {
-        if(lowestTemp>temp->m.temp || firstFlag == 0)
+        if(lowestTemp>temp->m.temp || firstFlag==0)
         {
             firstFlag=1;
             lowestTemp=temp->m.temp;
             coldestDay=temp->m.time.day;
-            coldestMonth= temp->m.time.month;
+            coldestMonth=temp->m.time.month;
         } // if
         temp=temp->next;
     } // while
-    printf("%d / %d\n", coldestDay,coldestMonth);
-} // Province::lowerTemperature
+    printf("%d / %d\n", coldestDay, coldestMonth);
+} // Province::coldestDayProv
 
 DataSetRead::DataSetRead()
 {
@@ -173,6 +173,44 @@ int DataSetRead::DataSetEnd()
         return 1;
     } // else
 } // DataSetRead::DataSetEnd
+
+void bestProvince(float avTempCor, float avTempStaFe, float avTempMza) {
+    float nearTemp=0, diffCor=0, diffStaFe=0, diffMza=0;
+    float diffs[3]={0}, idealTemp=0;
+    int firstFlag=0;
+
+    /* Guardo el valor de temperatura ideal para cultivo de pimientos */
+    nearTemp=23;
+    
+    /* Calculo los valores absolutos de las diferencias entre 
+    la temperatura ideal y las temperaturas promedio de cada provincia */
+    diffCor=nearTemp-avTempCor;
+    diffStaFe=nearTemp-avTempStaFe;
+    diffMza=nearTemp-avTempMza;
+
+    /* Guardo las diferencias de cada provincia en un array */
+    diffs[0]=diffCor;
+    diffs[1]=diffStaFe;
+    diffs[2]=diffMza;
+
+    /* Busco la menor diferencia, esa sera la temperatura ideal para el cultivo de pimientos */
+    for(int ii=0; ii<3; ii++) {
+        if(diffs[ii]<idealTemp || firstFlag==0) {
+            firstFlag=1;
+            idealTemp=diffs[ii];
+        } // if
+    } // for
+
+    /* Identifico de cual de las provincias es el idealTemp (temperatura ideal), y esa
+    sera la provincia ideal para el cultivo de pimientos */
+    if(idealTemp==diffs[0])
+        printf("Cordoba es la mejor provincia para el cultivo de pimientos.\n");
+    else if(idealTemp==diffs[1])
+        printf("Santa Fe es la mejor provincia para el cultivo de pimientos.\n");
+    else if(idealTemp==diffs[2])
+        printf("Mendoza es la mejor provincia para el cultivo de pimientos.\n");
+
+} // bestProvince()
 
 void menu(char *op)
 {
