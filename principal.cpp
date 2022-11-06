@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
 {
     /* Declaracion e inicializacion de variables */
     char op = 0;
-    int provinceCode=0;
+    int provinceCode=0, cityId=0;
     float avTempCor=0, avTempStaFe=0, avTempMza=0;
     read_t read;
     /* Instanciacion de objetos */
@@ -60,6 +60,26 @@ int main(int argc, char const *argv[])
                 printf("Temperatura promedio de Mendoza: %.2f\n", avTempMza);
                 break;
             case 'c':
+                printf("\nIngresa el codigo de provincia y codigo de ciudad:\n");
+                scanf("%d %d",&provinceCode,&cityId);
+                switch (provinceCode)
+                {
+                case 1:
+                    if(Cordoba.searchCityName(&cityId))
+                        printf("\nTemp prom: %.2f",Cordoba.AverageTempCity(&cityId));
+                    break;
+                case 2:
+                    if(SantaFe.searchCityName(&cityId))
+                        printf("\nTemp prom: %.2f",SantaFe.AverageTempCity(&cityId));
+                    break;
+                case 3:
+                    if(Mendoza.searchCityName(&cityId))
+                        printf("\nTemp prom: %.2f",Mendoza.AverageTempCity(&cityId));
+                    break;
+                default:
+                    printf("\nCodigo de provincia invalido");
+                    break;
+                }      
                 break;
             case 'd':
                 break;

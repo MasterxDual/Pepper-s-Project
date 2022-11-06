@@ -58,6 +58,8 @@ class Province
     int countProvinces(void);
     float averageTempProv(void);
     void coldestDayProv(void);
+    float AverageTempCity(int*);
+    int searchCityName(int*);
     ~Province();
 };//province class
 

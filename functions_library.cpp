@@ -128,6 +128,51 @@ void Province::coldestDayProv(void)
     printf("%d / %d\n", coldestDay, coldestMonth);
 } // Province::coldestDayProv
 
+int Province::searchCityName(int *cityId)
+{
+    temp=head;
+    int flag=0;
+    char name[CHAR_MAX]={0};
+    while (temp != NULL && flag != 1)
+    {
+        if(temp->cityId == *cityId)
+        {
+            flag = 1;
+            strcpy(name,temp->cityName);
+        }
+        temp= temp->next;
+    }
+
+    if(flag != 1)
+    {
+        printf("\nCodigo de ciudad invalido");
+        return 0;
+    }
+    else
+    {
+        printf("\n%s",name);
+        return 1;
+    }
+    
+}
+
+float Province::AverageTempCity(int *cityId)
+{
+    float tot=0, prom=0;
+    int cont=0;
+    temp = head;
+    while(temp != NULL)
+    {
+        if(temp->cityId == *cityId)
+        {
+            tot += temp->m.temp;
+            cont++;
+        }
+        temp= temp->next;
+    }
+    prom= (float)tot/cont;
+    return prom;
+}
 DataSetRead::DataSetRead()
 {
     file = fopen(ROUTE,"r");
