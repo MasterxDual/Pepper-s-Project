@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
     int provinceCode=0, cityId=0;
     float avTempCor=0, avTempStaFe=0, avTempMza=0;
     read_t read;
+    
     /* Instanciacion de objetos */
     DataSetRead dataset;
     Province Cordoba, SantaFe, Mendoza;
@@ -34,8 +35,8 @@ int main(int argc, char const *argv[])
         default:
             printf("\nCodigo de provincia invalido\n");
             break;
-        }
-    }
+        } // switch
+    } // while
 
     /* Definiendo variables de temperaturas promedio */
     avTempCor=Cordoba.averageTempProv();
@@ -61,25 +62,25 @@ int main(int argc, char const *argv[])
                 break;
             case 'c':
                 printf("\nIngresa el codigo de provincia y codigo de ciudad:\n");
-                scanf("%d %d",&provinceCode,&cityId);
+                scanf("%d %d", &provinceCode, &cityId);
                 switch (provinceCode)
                 {
                 case 1:
                     if(Cordoba.searchCityName(&cityId))
-                        printf("\nTemp prom: %.2f",Cordoba.AverageTempCity(&cityId));
+                        printf("\nTemp prom: %.2f", Cordoba.averageTempCity(&cityId));
                     break;
                 case 2:
                     if(SantaFe.searchCityName(&cityId))
-                        printf("\nTemp prom: %.2f",SantaFe.AverageTempCity(&cityId));
+                        printf("\nTemp prom: %.2f", SantaFe.averageTempCity(&cityId));
                     break;
                 case 3:
                     if(Mendoza.searchCityName(&cityId))
-                        printf("\nTemp prom: %.2f",Mendoza.AverageTempCity(&cityId));
+                        printf("\nTemp prom: %.2f", Mendoza.averageTempCity(&cityId));
                     break;
                 default:
                     printf("\nCodigo de provincia invalido");
                     break;
-                }      
+                } // switch     
                 break;
             case 'd':
                 break;
