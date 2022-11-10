@@ -4,29 +4,30 @@
 
 Province::Province()
 {
-    head = NULL;
-    temp = NULL;
-    newNode = NULL;
+    head=NULL;
+    temp=NULL;
+    newNode=NULL;
 } // constructor clase Province
 
 Province::~Province()
 {
-	while(head != NULL)
+	while(head!=NULL)
 	{
 		temp=head;
 	    head = temp->next;
 		free(temp);
-	} // hhile
+	} // while
 } // destructor clase Province
 
 void Province::append(read_t *read)
 {
     newNode =(city_t *)malloc(sizeof(city_t));
-    if(newNode == NULL)
+    if(newNode==NULL)
     {
         printf("\nNot memory");
         exit(1);
     } // if
+
     // Set new node data
     newNode->cityId = read->cityId;
     newNode->m.hum = read->hum;
@@ -35,27 +36,27 @@ void Province::append(read_t *read)
     newNode->m.time.hh= read->hh;
     newNode->m.time.day= read->day;
     newNode->m.time.month= read->month;
-    strncpy(newNode->cityName,read->cityName,CHAR_MAX);
+    strncpy(newNode->cityName, read->cityName, CHAR_MAX);
     newNode->next=NULL;
-    if(head == NULL)
+
+    if(head==NULL)
     {
         head=newNode;
     } // if
     else
     {
         temp=head;
-        while (temp->next != NULL)
+        while(temp->next != NULL)
         {
             temp=temp->next;
         } // while
-        temp->next = newNode;
+        temp->next=newNode;
         
     } // else
 }// Province::append
 
 void Province::printList()
 {
- 
     temp = head;
     while (temp != NULL)
     {
@@ -76,19 +77,21 @@ void Province::printList()
         temp->m.time.hh,
         temp->m.time.mm);
         temp=temp->next;
-    }// While
+    }// while
     
 }// Province::printList
 
 int Province::countProvinces(void)
 {
     int count=0; // contador
+
     temp=head;
     while(temp!=NULL)
     {
         count++;
         temp=temp->next;
     } // while
+
     return count;
 } // Province::countProvinces
 
@@ -130,53 +133,59 @@ void Province::coldestDayProv(void)
 
 int Province::searchCityName(int *cityId)
 {
-    temp=head;
     int flag=0;
     char name[CHAR_MAX]={0};
-    while (temp != NULL && flag != 1)
-    {
-        if(temp->cityId == *cityId)
-        {
-            flag = 1;
-            strcpy(name,temp->cityName);
-        }
-        temp= temp->next;
-    }
 
-    if(flag != 1)
+    temp=head;
+    while(temp!=NULL && flag!=1)
+    {
+        if(temp->cityId==*cityId)
+        {
+            flag=1;
+            strcpy(name, temp->cityName);
+        } // if
+        temp=temp->next;
+    } // while
+
+    if(flag!=1)
     {
         printf("\nCodigo de ciudad invalido");
+
         return 0;
-    }
+    } // if
     else
     {
-        printf("\n%s",name);
-        return 1;
-    }
-    
-}
+        printf("\n%s", name);
 
-float Province::AverageTempCity(int *cityId)
+        return 1;
+    } // if
+} // Province::searchCityName
+
+float Province::averageTempCity(int *cityId)
 {
     float tot=0, prom=0;
     int cont=0;
-    temp = head;
-    while(temp != NULL)
+
+    temp=head;
+    while(temp!=NULL)
     {
-        if(temp->cityId == *cityId)
+        if(temp->cityId==*cityId)
         {
-            tot += temp->m.temp;
+            tot+=temp->m.temp;
             cont++;
-        }
-        temp= temp->next;
-    }
-    prom= (float)tot/cont;
+        } // if
+        temp=temp->next;
+    } // while
+    prom=(float)(tot/cont);
+
     return prom;
-}
+} // Province::averageTempCity
+
 DataSetRead::DataSetRead()
 {
-    file = fopen(ROUTE,"r");
-    if(file == NULL)
+    file=fopen(ROUTE,"r");
+
+    if(file==NULL)
     {
         printf("\nFILE ERROR");
         exit(1);
@@ -249,11 +258,14 @@ void bestProvince(float avTempCor, float avTempStaFe, float avTempMza) {
     /* Identifico de cual de las provincias es el idealTemp (temperatura ideal), y esa
     sera la provincia ideal para el cultivo de pimientos */
     if(idealTemp==diffs[0])
-        printf("Cordoba es la mejor provincia para el cultivo de pimientos.\n");
+        printf("Cordoba es la mejor provincia para el cultivo de pimientos.\n"
+        "Con una temperature promedio de %.2f.\n", avTempCor);
     else if(idealTemp==diffs[1])
-        printf("Santa Fe es la mejor provincia para el cultivo de pimientos.\n");
+        printf("Santa Fe es la mejor provincia para el cultivo de pimientos.\n"
+        "Con una temperatura promedio de %.2f.\n", avTempStaFe);
     else if(idealTemp==diffs[2])
-        printf("Mendoza es la mejor provincia para el cultivo de pimientos.\n");
+        printf("Mendoza es la mejor provincia para el cultivo de pimientos.\n"
+        "Con una temperatura promedio de %.2f.\n", avTempMza);
 
 } // bestProvince()
 
@@ -272,5 +284,5 @@ void menu(char *op)
             "i. Cerrar menu.\n"
             "Ingrese una opcion: ");
     scanf(" %c", op);
-    *op = tolower(*op); // convierte cualquier caracter a minusculas
+    *op=tolower(*op); // convierte cualquier caracter a minusculas
 } // menu
