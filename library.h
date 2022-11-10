@@ -60,6 +60,7 @@ class Province
     void coldestDayProv(void);
     float averageTempCity(int *);
     int searchCityName(int *);
+    void warmestDayCity(int *);
     ~Province();
 };//province class
 

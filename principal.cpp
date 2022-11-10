@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
     int provinceCode=0, cityId=0;
     float avTempCor=0, avTempStaFe=0, avTempMza=0;
     read_t read;
-    
+
     /* Instanciacion de objetos */
     DataSetRead dataset;
     Province Cordoba, SantaFe, Mendoza;
@@ -61,25 +61,25 @@ int main(int argc, char const *argv[])
                 printf("Temperatura promedio de Mendoza: %.2f\n", avTempMza);
                 break;
             case 'c':
-                printf("\nIngresa el codigo de provincia y codigo de ciudad:\n");
+                printf("\nIngresa el codigo de provincia y el codigo de ciudad:\n");
                 scanf("%d %d", &provinceCode, &cityId);
                 switch (provinceCode)
                 {
-                case 1:
-                    if(Cordoba.searchCityName(&cityId))
-                        printf("\nTemp prom: %.2f", Cordoba.averageTempCity(&cityId));
-                    break;
-                case 2:
-                    if(SantaFe.searchCityName(&cityId))
-                        printf("\nTemp prom: %.2f", SantaFe.averageTempCity(&cityId));
-                    break;
-                case 3:
-                    if(Mendoza.searchCityName(&cityId))
-                        printf("\nTemp prom: %.2f", Mendoza.averageTempCity(&cityId));
-                    break;
-                default:
-                    printf("\nCodigo de provincia invalido");
-                    break;
+                    case 1:
+                        if(Cordoba.searchCityName(&cityId))
+                            printf("\nTemp prom: %.2f", Cordoba.averageTempCity(&cityId));
+                        break;
+                    case 2:
+                        if(SantaFe.searchCityName(&cityId))
+                            printf("\nTemp prom: %.2f", SantaFe.averageTempCity(&cityId));
+                        break;
+                    case 3:
+                        if(Mendoza.searchCityName(&cityId))
+                            printf("\nTemp prom: %.2f", Mendoza.averageTempCity(&cityId));
+                        break;
+                    default:
+                            printf("\nCodigo de provincia invalido");
+                            break;
                 } // switch     
                 break;
             case 'd':
@@ -87,8 +87,8 @@ int main(int argc, char const *argv[])
             case 'e':
                 break;
             case 'f':
-                printf("\nDias mas frios de cada provincia:\n");
-                printf("Dia y mes mas frio de Cordoba: ");
+                printf("\nDias mas frios de cada provincia:\n"
+                "Dia y mes mas frio de Cordoba: ");
                 Cordoba.coldestDayProv();
                 printf("Dia y mes mas frio de Santa Fe: ");
                 SantaFe.coldestDayProv();
@@ -96,6 +96,32 @@ int main(int argc, char const *argv[])
                 Mendoza.coldestDayProv();
                 break;
             case 'g':
+                printf("\nIngrese el codigo de provincia y el codigo de ciudad:\n");
+                scanf("%d%d", &provinceCode, &cityId);
+                switch(provinceCode)
+                {
+                    case 1:
+                        if(Cordoba.searchCityName(&cityId)) {
+                            printf("Dia y mes mas calido: ");
+                            Cordoba.warmestDayCity(&cityId);
+                            break;
+                        } // if
+                    case 2:
+                        if(SantaFe.searchCityName(&cityId)) {
+                            printf("Dia y mes mas calido: ");
+                            SantaFe.warmestDayCity(&cityId);
+                            break;
+                        } // if
+                    case 3:
+                        if(Mendoza.searchCityName(&cityId)) {
+                            printf("Dia y mes mas calido: ");
+                            Mendoza.warmestDayCity(&cityId);
+                            break;
+                        } // if
+                    default:
+                        printf("\nCodigo de provincia invalido");
+                        break;
+                } // switch
                 break;
             case 'h':
                 bestProvince(avTempCor, avTempStaFe, avTempMza);
