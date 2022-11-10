@@ -61,6 +61,7 @@ class Province
     float averageTempCity(int *);
     int searchCityName(int *);
     void warmestDayCity(int *);
+    void searchWarmestCity(void);
     ~Province();
 };//province class
 

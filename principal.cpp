@@ -83,6 +83,12 @@ int main(int argc, char const *argv[])
                 } // switch     
                 break;
             case 'd':
+                printf("\nCiudad mas calida de Cordoba: ");
+                Cordoba.searchWarmestCity();
+                printf("\nCiudad mas calida de Santa Fe: ");
+                SantaFe.searchWarmestCity();
+                printf("\nCiudad mas calida de Mendoza: ");
+                Mendoza.searchWarmestCity();
                 break;
             case 'e':
                 break;

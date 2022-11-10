@@ -206,6 +206,28 @@ void Province::warmestDayCity(int *cityId)
     printf("%d / %d\n", warmestDay, warmestMonth);
 } // Province::warmestDayCity
 
+void Province::searchWarmestCity(void)
+{
+    float warmestTemp=0;
+    int firstFlag=0;
+    char name[CHAR_MAX]={0};
+
+    temp=head;
+    while(temp!=NULL)
+    {
+        if(warmestTemp<temp->m.temp || firstFlag==0)
+        {
+            firstFlag=1;
+            warmestTemp=temp->m.temp;
+            strcpy(name, temp->cityName);
+        } // if
+        temp=temp->next;
+    } // while
+
+    printf("%s\n", name);
+    printf("Con una temperatura de: %.2f\n", warmestTemp);
+} // Province::searchWarmestCityId
+
 DataSetRead::DataSetRead()
 {
     file=fopen(ROUTE,"r");
