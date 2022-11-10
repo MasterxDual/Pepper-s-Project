@@ -107,6 +107,7 @@ float Province::averageTempProv(void)
         count++;
         temp=temp->next;
     } // while
+
     return ((float)sum/count);
 } // Province::averageTempProv
 
@@ -149,13 +150,13 @@ int Province::searchCityName(int *cityId)
 
     if(flag!=1)
     {
-        printf("\nCodigo de ciudad invalido");
+        printf("\nCodigo de ciudad invalido\n");
 
         return 0;
     } // if
     else
     {
-        printf("\n%s", name);
+        printf("\nCiudad: %s\n", name);
 
         return 1;
     } // if
@@ -180,6 +181,30 @@ float Province::averageTempCity(int *cityId)
 
     return prom;
 } // Province::averageTempCity
+
+void Province::warmestDayCity(int *cityId)
+{
+    float warmestTemp=0;
+    int warmestDay=0, warmestMonth=0;
+    int firstFlag=0;
+
+    temp=head;
+    while(temp!=NULL)
+    {
+        if(temp->cityId==*cityId)
+        {
+            if(warmestTemp<temp->m.temp || firstFlag==0)
+            {
+                firstFlag=1;
+                warmestTemp=temp->m.temp;
+                warmestDay=temp->m.time.day;
+                warmestMonth=temp->m.time.month;
+            } // if
+        } // if
+        temp=temp->next;
+    } // while
+    printf("%d / %d\n", warmestDay, warmestMonth);
+} // Province::warmestDayCity
 
 DataSetRead::DataSetRead()
 {
