@@ -15,7 +15,7 @@ Province::~Province()
 	while(head!=NULL)
 	{
 		temp=head;
-	    head = temp->next;
+	    head=temp->next;
 		free(temp);
 	} // while
 } // destructor clase Province
@@ -42,9 +42,7 @@ void Province::append(read_t *read)
     newNode->next=NULL;
 
     if(head==NULL)
-    {
         head=newNode;
-    } // if
     else
     {
         temp=head;
@@ -79,7 +77,6 @@ void Province::printList()
         temp->m.time.mm);
         temp=temp->next;
     }// while
-    
 }// Province::printList
 
 int Province::countProvinces(void)
@@ -132,9 +129,7 @@ void Province::coldestDayProv(void)
     while (temp!=NULL)
     {
         if (lowestTemp==temp->m.temp)
-        {
             printf("%d / %d\t", temp->m.time.day, temp->m.time.month);
-        }
         temp = temp->next;
     }
     printf("\n");
@@ -171,7 +166,7 @@ int Province::searchCityName(int *cityId)
 float Province::averageTempCity(int *cityId)
 {
     float tot=0, prom=0;
-    int cont=0;
+    int count=0;
 
     temp=head;
     while(temp!=NULL)
@@ -179,11 +174,11 @@ float Province::averageTempCity(int *cityId)
         if(temp->cityId==*cityId)
         {
             tot+=temp->m.temp;
-            cont++;
+            count++;
         } // if
         temp=temp->next;
     } // while
-    prom=(float)(tot/cont);
+    prom=(float)(tot/count);
 
     return prom;
 } // Province::averageTempCity
@@ -227,9 +222,7 @@ void Province::searchWarmestCity(void)
     while (temp!=NULL)
     {
         if (warmestTemp==temp->m.temp)
-        {
             printf("\t%s", temp->cityName);
-        }
         temp=temp->next;
     }
     printf("\n");
@@ -241,10 +234,7 @@ DataSetRead::DataSetRead()
     /* Abrir archivo para lectura */
     file=fopen(ROUTE,"r");
     if(file==NULL) // verificar si el archivo existe
-    {
-        printf("\nFILE ERROR.\n");
-        exit(1); // finalizar el programa
-    }
+        perror(ROUTE); // produce un mensaje de error por consola
 }// constructor clase DataSetRead
 
 DataSetRead::~DataSetRead()
@@ -274,9 +264,7 @@ read_t DataSetRead::GetDataSetLine()
 int DataSetRead::DataSetEnd()
 {
     if(feof(file)) // evalua si feof(file) == 1
-    {
         return 0;
-    } // if
     else
     {
         return 1;
@@ -295,15 +283,16 @@ void bestProvince(float avTempCor, float avTempStaFe, float avTempMza)
     int firstFlag=0;
 
         /* Calculo los valores absolutos de las diferencias entre
-    la temperatura ideal y las temperaturas promedio de cada provincia */
-    diffCor= fabs(nearTemp-avTempCor);
-    diffStaFe= fabs(nearTemp-avTempStaFe);
-    diffMza= fabs(nearTemp-avTempMza);
+    la temperatura ideal y las temperaturas promedio de cada provincia,
+    y dichas direncias de cada provincia se almacenan en un array*/
+    diffs[0]=fabs(nearTemp-avTempCor); // Cordoba
+    diffs[1]=fabs(nearTemp-avTempStaFe); // Santa Fe
+    diffs[2]=fabs(nearTemp-avTempMza); // Mendoza
 
-    /* Guardo las diferencias de cada provincia en un array */
+/*     Guardo las diferencias de cada provincia en un array
     diffs[0]=diffCor;
     diffs[1]=diffStaFe;
-    diffs[2]=diffMza;
+    diffs[2]=diffMza; */
 
     /* Busco la menor diferencia, esa sera la temperatura ideal para el cultivo de pimientos */
     for(int ii=0; ii<3; ii++)
