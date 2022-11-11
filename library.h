@@ -1,12 +1,12 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
-#define CHAR_MAX 50
-#define ROUTE "./data_set.txt"
+#define TAM_STRINGS 50 // maximo de caracteres permitidos en una string
+#define ROUTE "./data_set.txt" // Ruta por defecto donde se encuentra el archivos de datos
 
-void menu(char *);
-void bestProvince(float, float, float);
+void menu(char *); // Funcion para interectuar con el menu de opciones
+void bestProvince(float, float, float); // Funcion para evaluar cual es la mejor provincia para el cultivo de pimientos
 
-struct timestamp 
+struct timestamp
 {
     int day;
     int month;
@@ -14,7 +14,7 @@ struct timestamp
     int mm;
 };//timestamp
 
-struct measurement 
+struct measurement
 {
     float temp;
     float hum;
@@ -26,14 +26,14 @@ struct city
     struct city *next;
     struct measurement m;
     int cityId;
-    char cityName[CHAR_MAX];
+    char cityName[TAM_STRINGS];
 };//city
 
 struct read
 {
     int cityId;
     int provCode;
-    char cityName[CHAR_MAX];
+    char cityName[TAM_STRINGS];
     float temp;
     float hum;
     int hh;
@@ -74,10 +74,10 @@ class DataSetRead
     DataSetRead();
     void RegainDataSetLine();
     read_t GetDataSetLine();
+    
     int DataSetEnd();
-    ~DataSetRead(); 
+    ~DataSetRead();
 };//class DataSetRead
 
 #include "functions_library.cpp"
-
 #endif
