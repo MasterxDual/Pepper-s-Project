@@ -12,6 +12,13 @@ int main(int argc, char const *argv[])
     float avTempCor=0, avTempStaFe=0, avTempMza=0;
     read_t read;
 
+/*     FILE *fp = fopen("archivo.txt", "r");
+    if (fp == NULL)
+    {
+        perror("archivo.txt"); // con este ejemplo pueden ver que pasa si se abre un archivo que no existe
+    } esto hay que borrarlo despues, es solo para que puedan ver si funcionamiento en accion*/
+
+
     /* Instanciacion de objetos */
     DataSetRead dataset;
     Province Cordoba, SantaFe, Mendoza;
