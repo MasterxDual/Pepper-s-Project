@@ -45,6 +45,7 @@ struct read
 typedef struct city city_t;
 typedef struct read read_t;
 
+int CompareReads(read_t *,read_t *);
 class Province
 {
     private:
