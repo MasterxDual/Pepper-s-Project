@@ -21,28 +21,32 @@ int main(int argc, char const *argv[])
     {
         dataset.RegainDataSetLine();
         read = dataset.GetDataSetLine();
-        switch (read.provCode)
+        /* Descartar valores de dias y meses inconrrectos */
+        if ((read.month>=1&&read.month<=12)&&(read.day>=1&&read.day<=31))
         {
-        case 1:
-            Cordoba.append(&read);
-            break;
-        case 2:
-            SantaFe.append(&read);
-            break;
-        case 3:
-            Mendoza.append(&read);
-            break;
-        default:
-            printf("\nCodigo de provincia invalido\n");
-            break;
-        } // switch
+            switch (read.provCode)
+            {
+            case 1:
+                Cordoba.append(&read);
+                break;
+            case 2:
+                SantaFe.append(&read);
+                break;
+            case 3:
+                Mendoza.append(&read);
+                break;
+            default:
+                /* Se descartan valores con Codigo de provincia invalido */
+                break;
+            } // switch
+        }
     } // while
 
     /* Definiendo variables de temperaturas promedio */
     avTempCor=Cordoba.averageTempProv();
     avTempStaFe=SantaFe.averageTempProv();
     avTempMza=Mendoza.averageTempProv();
-    
+
     do // ciclo do-while para menu de opciones
     {
         menu(&op); // invocacion funcion menu
@@ -61,8 +65,10 @@ int main(int argc, char const *argv[])
                 printf("Temperatura promedio de Mendoza: %.2f\n", avTempMza);
                 break;
             case 'c':
-                printf("\nIngresa el codigo de provincia y el codigo de ciudad:\n");
-                scanf("%d %d", &provinceCode, &cityId);
+                printf("\nIngresa el codigo de provincia: ");
+                scanf("%d", &provinceCode);
+                printf("y el codigo de ciudad: ");
+                scanf("%d", &cityId);
                 switch (provinceCode)
                 {
                     case 1:
@@ -78,32 +84,34 @@ int main(int argc, char const *argv[])
                             printf("\nTemp prom: %.2f", Mendoza.averageTempCity(&cityId));
                         break;
                     default:
-                            printf("\nCodigo de provincia invalido");
-                            break;
-                } // switch     
+                        printf("\nCodigo de provincia invalido");
+                        break;
+                } // switch
                 break;
             case 'd':
-                printf("\nCiudad mas calida de Cordoba: ");
+                printf("\n* Ciudad/es mas calida/s de Cordoba:\n");
                 Cordoba.searchWarmestCity();
-                printf("\nCiudad mas calida de Santa Fe: ");
+                printf("\n* Ciudad/es mas calida/s de Santa Fe:\n");
                 SantaFe.searchWarmestCity();
-                printf("\nCiudad mas calida de Mendoza: ");
+                printf("\n* Ciudad/es mas calida/s de Mendoza:\n");
                 Mendoza.searchWarmestCity();
                 break;
             case 'e':
                 break;
             case 'f':
                 printf("\nDias mas frios de cada provincia:\n"
-                "Dia y mes mas frio de Cordoba: ");
+                "* Dia/s y mes mas frio/s de Cordoba: ");
                 Cordoba.coldestDayProv();
-                printf("Dia y mes mas frio de Santa Fe: ");
+                printf("* Dia/s y mes mas frio/s de Santa Fe: ");
                 SantaFe.coldestDayProv();
-                printf("Dia y mes mas frio de Mendoza: ");
+                printf("* Dia/s y mes mas frio/s de Mendoza: ");
                 Mendoza.coldestDayProv();
                 break;
             case 'g':
-                printf("\nIngrese el codigo de provincia y el codigo de ciudad:\n");
-                scanf("%d%d", &provinceCode, &cityId);
+                printf("\nIngresa el codigo de provincia: ");
+                scanf("%d", &provinceCode);
+                printf("y el codigo de ciudad: ");
+                scanf("%d", &cityId);
                 switch(provinceCode)
                 {
                     case 1:
@@ -140,6 +148,5 @@ int main(int argc, char const *argv[])
                 break;
         } // switch
     } while(op!='i'); // do-while
-
     return 0;
 } // main
