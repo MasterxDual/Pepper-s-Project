@@ -317,6 +317,18 @@ void bestProvince(float avTempCor, float avTempStaFe, float avTempMza)
         "Con una temperatura promedio de %.2f.\n", avTempMza);
 } // bestProvince()
 
+int CompareReads(read_t *read, read_t *prev)
+{
+    // si son iguales las lecturas
+    if(read->day == prev->day && read->month == prev->month && read->hh == prev->hh && read->mm == prev->mm && read->cityId == prev->cityId && read->temp == prev->temp && read->hum == prev->hum && read->provCode == prev->provCode && strcmp(read->cityName,prev->cityName)==0)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
 void menu(char *op)
 {
     /* Menu de opciones */

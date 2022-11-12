@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
     char op = 0;
     int provinceCode=0, cityId=0;
     float avTempCor=0, avTempStaFe=0, avTempMza=0;
-    read_t read;
+    read_t read, prevRead;
 
 /*     FILE *fp = fopen("archivo.txt", "r");
     if (fp == NULL)
@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
         dataset.RegainDataSetLine();
         read = dataset.GetDataSetLine();
         /* Descartar valores de dias y meses inconrrectos */
-        if ((read.month>=1&&read.month<=12)&&(read.day>=1&&read.day<=31))
+        if ((read.month>=1&&read.month<=12)&&(read.day>=1&&read.day<=31) && CompareReads(&read,&prevRead))
         {
             switch (read.provCode)
             {
@@ -46,6 +46,8 @@ int main(int argc, char const *argv[])
                 /* Se descartan valores con Codigo de provincia invalido */
                 break;
             } // switch
+            //reservamos valor previo para compararlo 
+            prevRead = read;
         }
     } // while
 
