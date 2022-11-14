@@ -63,6 +63,7 @@ class Province
     int searchCityName(int *);
     void warmestDayCity(int *);
     void searchWarmestCity(void);
+    void searchColdestCity(void);
     ~Province();
 };//province class
 

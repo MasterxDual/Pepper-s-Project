@@ -227,7 +227,35 @@ void Province::searchWarmestCity(void)
     }
     printf("\n");
     printf("Con una temperatura de: %.2f\n", warmestTemp);
-} // Province::searchWarmestCityId
+} // Province::searchWarmestCity
+
+void Province::searchColdestCity(void)
+{
+    float coldestTemp=0;
+    int firstFlag=0;
+    char name[TAM_STRINGS]={0};
+
+    temp=head;
+    while(temp!=NULL)
+    {
+        if(coldestTemp>temp->m.temp || firstFlag==0)
+        {
+            firstFlag=1;
+            coldestTemp=temp->m.temp;
+        } // if
+        temp=temp->next;
+    } // while
+
+    temp=head;
+    while(temp!=NULL)
+    {
+        if(coldestTemp==temp->m.temp)
+            printf("\t%s", temp->cityName);
+        temp=temp->next;
+    }
+    printf("\n");
+    printf("Con una temperatura de: %.2f\n", coldestTemp);
+} // Province::searchColdestCity
 
 DataSetRead::DataSetRead()
 {

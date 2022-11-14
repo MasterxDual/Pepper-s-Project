@@ -106,6 +106,12 @@ int main(int argc, char const *argv[])
                 Mendoza.searchWarmestCity();
                 break;
             case 'e':
+                printf("\n* Ciudad/es mas fria/s de Cordoba:\n");
+                Cordoba.searchColdestCity();
+                printf("\n* Ciudad/es mas fria/s de Santa Fe:\n");
+                SantaFe.searchColdestCity();
+                printf("\n* Ciudad/es mas fria/s de Mendoza:\n");
+                Mendoza.searchColdestCity();
                 break;
             case 'f':
                 printf("\nDias mas frios de cada provincia:\n"
