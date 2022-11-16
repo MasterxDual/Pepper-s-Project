@@ -199,8 +199,11 @@ void Province::warmestDayCity(int *cityId)
     temp=head;
     while (temp!=NULL)
     {
+        if(temp->cityId==*cityId)
+        {
         if (warmestTemp==temp->m.temp)
             printf("\t%d / %d\n", temp->m.time.day, temp->m.time.month);
+        } // if
         temp=temp->next;
     } // while
 } // Province::warmestDayCity
