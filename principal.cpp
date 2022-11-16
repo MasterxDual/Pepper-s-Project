@@ -12,13 +12,6 @@ int main(int argc, char const *argv[])
     float avTempCor=0, avTempStaFe=0, avTempMza=0;
     read_t read, prevRead;
 
-/*     FILE *fp = fopen("archivo.txt", "r");
-    if (fp == NULL)
-    {
-        perror("archivo.txt"); // con este ejemplo pueden ver que pasa si se abre un archivo que no existe
-    } esto hay que borrarlo despues, es solo para que puedan ver si funcionamiento en accion*/
-
-
     /* Instanciacion de objetos */
     DataSetRead dataset;
     Province Cordoba, SantaFe, Mendoza;
@@ -46,7 +39,7 @@ int main(int argc, char const *argv[])
                 /* Se descartan valores con Codigo de provincia invalido */
                 break;
             } // switch
-            //reservamos valor previo para compararlo 
+            //reservamos valor previo para compararlo
             prevRead = read;
         }
     } // while
@@ -131,19 +124,19 @@ int main(int argc, char const *argv[])
                 {
                     case 1:
                         if(Cordoba.searchCityName(&cityId)) {
-                            printf("Dia y mes mas calido: ");
+                            printf("Dia/s mas calidos: ");
                             Cordoba.warmestDayCity(&cityId);
                             break;
                         } // if
                     case 2:
                         if(SantaFe.searchCityName(&cityId)) {
-                            printf("Dia y mes mas calido: ");
+                            printf("Dia/s mas calidos: ");
                             SantaFe.warmestDayCity(&cityId);
                             break;
                         } // if
                     case 3:
                         if(Mendoza.searchCityName(&cityId)) {
-                            printf("Dia y mes mas calido: ");
+                            printf("Dia/s mas calidos: ");
                             Mendoza.warmestDayCity(&cityId);
                             break;
                         } // if
