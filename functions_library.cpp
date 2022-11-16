@@ -163,9 +163,8 @@ int Province::searchCityName(int *cityId)
 
 float Province::averageTempCity(int *cityId)
 {
-    float tot=0, prom=0;
+    float tot=0;
     int count=0;
-
     temp=head;
     while(temp!=NULL)
     {
@@ -176,9 +175,9 @@ float Province::averageTempCity(int *cityId)
         } // if
         temp=temp->next;
     } // while
-    prom=(float)(tot/count);
+    return ((float)(tot/count));
 
-    return prom;
+
 } // Province::averageTempCity
 
 void Province::warmestDayCity(int *cityId)
@@ -262,7 +261,6 @@ DataSetRead::DataSetRead()
 {
     /* Abrir archivo para lectura */
     file=fopen(ROUTE,"r");
-    
     if(file==NULL) // verificar si el archivo existe
     {
         perror(ROUTE); // produce un mensaje de error por consola
@@ -310,8 +308,7 @@ void bestProvince(float avTempCor, float avTempStaFe, float avTempMza)
 {
     /* Declaracion e inicializacion de variables */
     const float nearTemp=23; // guardo el valor de temperatura ideal para cultivo de pimientos
-    float diffs[3]={0},
-          idealTemp=0;
+    float diffs[3]={0}, idealTemp=0;
     int firstFlag=0;
 
     /* Calculo los valores absolutos de las diferencias entre
@@ -346,7 +343,7 @@ void bestProvince(float avTempCor, float avTempStaFe, float avTempMza)
 
 int CompareReads(read_t *read, read_t *prev)
 {
-    /* Si son iguales las lecturas */ 
+    /* Si son iguales las lecturas */
     if(read->day == prev->day && read->month == prev->month && read->hh == prev->hh &&
     read->mm == prev->mm && read->cityId == prev->cityId && read->temp == prev->temp &&
     read->hum == prev->hum && read->provCode == prev->provCode && strcmp(read->cityName,prev->cityName)==0)
