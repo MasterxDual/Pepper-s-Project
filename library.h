@@ -12,14 +12,14 @@ struct timestamp
     int month;
     int hh;
     int mm;
-};//timestamp
+}; // timestamp
 
 struct measurement
 {
     float temp;
     float hum;
     struct timestamp time;
-};//measurement
+}; // measurement
 
 struct city
 {
@@ -27,7 +27,7 @@ struct city
     struct measurement m;
     int cityId;
     char cityName[TAM_STRINGS];
-};//city
+}; // city
 
 struct read
 {
@@ -40,12 +40,13 @@ struct read
     int mm;
     int day;
     int month;
-};//read
+}; // read
 
 typedef struct city city_t;
 typedef struct read read_t;
 
 int CompareReads(read_t *,read_t *);
+
 class Province
 {
     private:
@@ -65,7 +66,7 @@ class Province
     void searchWarmestCity(void);
     void searchColdestCity(void);
     ~Province();
-};//province class
+}; // class Province
 
 class DataSetRead
 {
@@ -78,7 +79,7 @@ class DataSetRead
     read_t GetDataSetLine();
     int DataSetEnd();
     ~DataSetRead();
-};//class DataSetRead
+}; // class DataSetRead
 
 #include "functions_library.cpp"
 #endif

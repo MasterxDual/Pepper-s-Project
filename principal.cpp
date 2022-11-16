@@ -16,13 +16,13 @@ int main(int argc, char const *argv[])
     DataSetRead dataset;
     Province Cordoba, SantaFe, Mendoza;
 
-    /* Lectura del archivo y carga de Listas */
+    /* Lectura del archivo y carga de listas */
     while(dataset.DataSetEnd())
     {
         dataset.RegainDataSetLine();
-        read = dataset.GetDataSetLine();
-        /* Descartar valores de dias y meses inconrrectos */
-        if ((read.month>=1&&read.month<=12)&&(read.day>=1&&read.day<=31) && CompareReads(&read,&prevRead))
+        read=dataset.GetDataSetLine();
+        /* Descartar valores de dias y meses incorrectos */
+        if ((read.month>=1 && read.month<=12) && (read.day>=1 && read.day<=31) && CompareReads(&read, &prevRead))
         {
             switch (read.provCode)
             {
@@ -36,10 +36,10 @@ int main(int argc, char const *argv[])
                 Mendoza.append(&read);
                 break;
             default:
-                /* Se descartan valores con Codigo de provincia invalido */
+                /* Se descartan valores con codigo de provincia invalido */
                 break;
             } // switch
-            //reservamos valor previo para compararlo
+            /* Reservamos valor previo para compararlo */ 
             prevRead = read;
         }
     } // while
@@ -108,11 +108,11 @@ int main(int argc, char const *argv[])
                 break;
             case 'f':
                 printf("\nDias mas frios de cada provincia:\n"
-                "* Dia/s y mes mas frio/s de Cordoba: ");
+                "* Dia/s mas frio/s de Cordoba: ");
                 Cordoba.coldestDayProv();
-                printf("* Dia/s y mes mas frio/s de Santa Fe: ");
+                printf("* Dia/s mas frio/s de Santa Fe: ");
                 SantaFe.coldestDayProv();
-                printf("* Dia/s y mes mas frio/s de Mendoza: ");
+                printf("* Dia/s mas frio/s de Mendoza: ");
                 Mendoza.coldestDayProv();
                 break;
             case 'g':
@@ -156,5 +156,6 @@ int main(int argc, char const *argv[])
                 break;
         } // switch
     } while(op!='i'); // do-while
+
     return 0;
 } // main
