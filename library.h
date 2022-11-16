@@ -76,7 +76,6 @@ class DataSetRead
     DataSetRead();
     void RegainDataSetLine();
     read_t GetDataSetLine();
-    
     int DataSetEnd();
     ~DataSetRead();
 };//class DataSetRead
